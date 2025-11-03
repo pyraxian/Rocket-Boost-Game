@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] InputAction thrust;
     [SerializeField] InputAction rotation;
+    [SerializeField] private float enableDelay = 0.5f;
 
     [SerializeField] float thrustForce = 1000f;
     [SerializeField] float rotationSpeed = 100;
@@ -18,15 +20,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        thrust.Enable();
-        rotation.Enable();
+        Invoke(nameof(EnableControls), enableDelay);
     }
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         auSrc = GetComponent<AudioSource>();
-
     }
 
     // Update is called once per frame
@@ -70,5 +70,12 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true; // Prevent rotation from physics during player rotation
         transform.Rotate(rotationThisFrame * Time.fixedDeltaTime * Vector3.forward);
         rb.freezeRotation = false;
+    }
+
+    // Allows us to use Invoke to delay the player controls activating
+    private void EnableControls()
+    {
+        thrust.Enable();
+        rotation.Enable();
     }
 }

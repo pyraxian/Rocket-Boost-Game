@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
     [SerializeField] private float delayTimer = 2.0f;
+    
     void OnCollisionEnter(Collision collision)
     {
         switch (collision.gameObject.tag)
