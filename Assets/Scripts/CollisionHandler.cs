@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
+    [SerializeField] private float delayTimer = 2.0f;
     void OnCollisionEnter(Collision collision)
     {
         switch (collision.gameObject.tag)
@@ -18,7 +19,7 @@ public class CollisionHandler : MonoBehaviour
                 Debug.Log("You reached the end of the level");
                 if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings - 1)
                 {
-                    Invoke(nameof(LoadNextLevel), 2f);
+                    Invoke(nameof(LoadNextLevel), delayTimer);
                 } else
                 {
                     Debug.Log("You've reached the end of the game.");
@@ -33,7 +34,8 @@ public class CollisionHandler : MonoBehaviour
     private void CrashSequence()
     {
         Debug.Log("You hit a hazard and died");
-        Invoke(nameof(ReloadLevel), 2f);
+        GetComponent<PlayerMovement>().enabled = false;
+        Invoke(nameof(ReloadLevel), delayTimer);
     }
 
     void LoadNextLevel()
