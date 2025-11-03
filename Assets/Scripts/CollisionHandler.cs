@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,21 +18,31 @@ public class CollisionHandler : MonoBehaviour
                 Debug.Log("You reached the end of the level");
                 if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings - 1)
                 {
-                    LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+                    Invoke(nameof(LoadNextLevel), 2f);
                 } else
                 {
                     Debug.Log("You've reached the end of the game.");
                 }
                 break;
             default:
-                Debug.Log("You hit a hazard and died");
-                LoadLevel(SceneManager.GetActiveScene().buildIndex);
+                CrashSequence();
                 break;
         }
     }
 
-    void LoadLevel(int level)
+    private void CrashSequence()
     {
-        SceneManager.LoadScene(level);   
+        Debug.Log("You hit a hazard and died");
+        Invoke(nameof(ReloadLevel), 2f);
+    }
+
+    void LoadNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    
+    void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
