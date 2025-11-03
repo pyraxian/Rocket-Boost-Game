@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(PlayerMovement))]
+
 public class CollisionHandler : MonoBehaviour
 {
     [SerializeField] private float delayTimer = 2.0f;
@@ -19,8 +21,10 @@ public class CollisionHandler : MonoBehaviour
                 Debug.Log("You reached the end of the level");
                 if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings - 1)
                 {
+                    GetComponent<PlayerMovement>().enabled = false;
                     Invoke(nameof(LoadNextLevel), delayTimer);
-                } else
+                }
+                else
                 {
                     Debug.Log("You've reached the end of the game.");
                 }
@@ -42,7 +46,7 @@ public class CollisionHandler : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    
+
     void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
