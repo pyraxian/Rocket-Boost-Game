@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float enableDelay = 0.5f;
     [SerializeField] float thrustForce = 1000f;
     [SerializeField] float rotationSpeed = 100;
+    [SerializeField] AudioClip thrustSound;
 
     Rigidbody rb;
     AudioSource auSrc;
@@ -41,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddRelativeForce(thrustForce * Time.fixedDeltaTime * Vector3.up);
             if (!auSrc.isPlaying)
             {
-                auSrc.Play();
+                auSrc.PlayOneShot(thrustSound, 1.0F);
             }
         } else
         {

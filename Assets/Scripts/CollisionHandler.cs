@@ -2,11 +2,21 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(PlayerMovement))]
 
 public class CollisionHandler : MonoBehaviour
 {
     [SerializeField] private float delayTimer = 2.0f;
+    [SerializeField] AudioClip failSound;
+    [SerializeField] AudioClip successSound;
+
+    AudioSource auSrc;
+
+    void Start()
+    {
+        auSrc = GetComponent<AudioSource>();
+    }
 
     void OnCollisionEnter(Collision collision)
     {
@@ -37,7 +47,8 @@ public class CollisionHandler : MonoBehaviour
 
     private void SuccessSequence()
     {
-        // todo: add sfx and particles
+        // todo: add particles
+        auSrc.PlayOneShot(successSound, 1.0F);
         GetComponent<PlayerMovement>().enabled = false;
         Invoke(nameof(LoadNextLevel), delayTimer);
     }
@@ -45,6 +56,7 @@ public class CollisionHandler : MonoBehaviour
     private void CrashSequence()
     {
         Debug.Log("You hit a hazard and died");
+        auSrc.PlayOneShot(failSound, 1.0F);
         GetComponent<PlayerMovement>().enabled = false;
         Invoke(nameof(ReloadLevel), delayTimer);
     }
