@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] InputAction thrust;
     [SerializeField] InputAction rotation;
     [SerializeField] private float enableDelay = 0.5f;
-
     [SerializeField] float thrustForce = 1000f;
     [SerializeField] float rotationSpeed = 100;
 
@@ -29,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
         auSrc = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     private void FixedUpdate()
     {
         Thrust();
