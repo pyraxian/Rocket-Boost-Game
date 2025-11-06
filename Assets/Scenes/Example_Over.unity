@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 8b215b80fbfa5e042a9875087e281a2b, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -871,26 +871,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 99460823881387039, guid: bf4c732a846d0c24ab5554dffde89216, type: 3}
-      propertyPath: m_Resource
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 531074000533913284, guid: bf4c732a846d0c24ab5554dffde89216, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2593837902426243211, guid: bf4c732a846d0c24ab5554dffde89216, type: 3}
-      propertyPath: thrustSound
-      value: 
-      objectReference: {fileID: 8300000, guid: f877f5d1080673640bd09b48fdab3481, type: 3}
-    - target: {fileID: 2818416103011141120, guid: bf4c732a846d0c24ab5554dffde89216, type: 3}
-      propertyPath: failSound
-      value: 
-      objectReference: {fileID: 8300000, guid: e32975f4aca4acc469216d3d31a41bf9, type: 3}
-    - target: {fileID: 2818416103011141120, guid: bf4c732a846d0c24ab5554dffde89216, type: 3}
-      propertyPath: successSound
-      value: 
-      objectReference: {fileID: 8300000, guid: a3cb8005ec4420a419c34b3a735a5c94, type: 3}
     - target: {fileID: 7958138071361396463, guid: bf4c732a846d0c24ab5554dffde89216, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.1
