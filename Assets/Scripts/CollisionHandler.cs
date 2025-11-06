@@ -37,6 +37,7 @@ public class CollisionHandler : MonoBehaviour
                 else
                 {
                     Debug.Log("You've reached the end of the game.");
+                    auSrc.PlayOneShot(successSound, 1.0F);
                 }
                 break;
             default:
