@@ -12,6 +12,7 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] AudioClip successSound;
 
     AudioSource auSrc;
+    private bool isControllable = true; // Prevent the player from moving the rocket after crashing or finishing level
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class CollisionHandler : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if (!isControllable) { return; }
         switch (collision.gameObject.tag)
         {
             case "Friendly":
@@ -49,6 +51,8 @@ public class CollisionHandler : MonoBehaviour
     private void SuccessSequence()
     {
         // todo: add particles
+        isControllable = false;
+        auSrc.Stop();
         auSrc.PlayOneShot(successSound, 1.0F);
         GetComponent<PlayerMovement>().enabled = false;
         Invoke(nameof(LoadNextLevel), delayTimer);
@@ -57,6 +61,8 @@ public class CollisionHandler : MonoBehaviour
     private void CrashSequence()
     {
         Debug.Log("You hit a hazard and died");
+        isControllable = false;
+        auSrc.Stop();
         auSrc.PlayOneShot(failSound, 1.0F);
         GetComponent<PlayerMovement>().enabled = false;
         Invoke(nameof(ReloadLevel), delayTimer);
