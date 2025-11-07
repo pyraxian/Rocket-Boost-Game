@@ -8,8 +8,10 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
     [SerializeField] private float delayTimer = 2.0f;
-    [SerializeField] AudioClip failSound;
-    [SerializeField] AudioClip successSound;
+    [SerializeField] AudioClip crashSFX;
+    [SerializeField] AudioClip successSFX;
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem crashParticles;
 
     AudioSource auSrc;
     private bool isControllable = true; // Prevent the player from moving the rocket after crashing or finishing level
@@ -39,7 +41,7 @@ public class CollisionHandler : MonoBehaviour
                 else
                 {
                     Debug.Log("You've reached the end of the game.");
-                    auSrc.PlayOneShot(successSound, 1.0F);
+                    auSrc.PlayOneShot(successSFX, 1.0F);
                 }
                 break;
             default:
@@ -53,7 +55,8 @@ public class CollisionHandler : MonoBehaviour
         // todo: add particles
         isControllable = false;
         auSrc.Stop();
-        auSrc.PlayOneShot(successSound, 1.0F);
+        auSrc.PlayOneShot(successSFX, 1.0F);
+        successParticles.Play();
         GetComponent<PlayerMovement>().enabled = false;
         Invoke(nameof(LoadNextLevel), delayTimer);
     }
@@ -63,7 +66,8 @@ public class CollisionHandler : MonoBehaviour
         Debug.Log("You hit a hazard and died");
         isControllable = false;
         auSrc.Stop();
-        auSrc.PlayOneShot(failSound, 1.0F);
+        auSrc.PlayOneShot(crashSFX, 1.0F);
+        crashParticles.Play();
         GetComponent<PlayerMovement>().enabled = false;
         Invoke(nameof(ReloadLevel), delayTimer);
     }
