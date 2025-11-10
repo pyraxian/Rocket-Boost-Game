@@ -35,21 +35,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Thrust();
+        ProcessThrust();
         ProcessRotation();
     }
 
-    private void Thrust()
+    private void ProcessThrust()
     {
         if (thrust.IsPressed())
         {
             rb.AddRelativeForce(thrustForce * Time.fixedDeltaTime * Vector3.up);
-            if (!auSrc.isPlaying)
-            {
-                auSrc.PlayOneShot(thrustSFX, 1.0F);
-            }
+            if (!auSrc.isPlaying) { auSrc.PlayOneShot(thrustSFX, 1.0F); }
+            if (!mainBoosterParticles.isPlaying) { mainBoosterParticles.Play(); }
         } else
         {
+            mainBoosterParticles.Stop();
             auSrc.Stop();
         }
     }
@@ -60,11 +59,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (rotationInput < 0) // Rotate clockwise
         {
+            if (!rightBoosterParticles.isPlaying) { rightBoosterParticles.Play(); }
             ApplyRotation(rotationSpeed);
         }
         else if (rotationInput > 0) // Rotate counter-clockwise
         {
+            if (!leftBoosterParticles.isPlaying) { leftBoosterParticles.Play(); }
             ApplyRotation(-rotationSpeed);
+        } 
+        else
+        {
+            rightBoosterParticles.Stop();
+            leftBoosterParticles.Stop();
         }
     }
 

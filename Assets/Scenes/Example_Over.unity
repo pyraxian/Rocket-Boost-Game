@@ -875,6 +875,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2593837902426243211, guid: bf4c732a846d0c24ab5554dffde89216, type: 3}
+      propertyPath: leftBoosterParticles
+      value: 
+      objectReference: {fileID: 3432803710198071900}
+    - target: {fileID: 2593837902426243211, guid: bf4c732a846d0c24ab5554dffde89216, type: 3}
+      propertyPath: mainBoosterParticles
+      value: 
+      objectReference: {fileID: 3432803710198071901}
+    - target: {fileID: 2593837902426243211, guid: bf4c732a846d0c24ab5554dffde89216, type: 3}
+      propertyPath: rightBoosterParticles
+      value: 
+      objectReference: {fileID: 3432803710198071899}
     - target: {fileID: 7958138071361396463, guid: bf4c732a846d0c24ab5554dffde89216, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.1
@@ -920,6 +932,21 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf4c732a846d0c24ab5554dffde89216, type: 3}
+--- !u!198 &3432803710198071899 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2140746184975596701, guid: bf4c732a846d0c24ab5554dffde89216, type: 3}
+  m_PrefabInstance: {fileID: 3432803710198071898}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3432803710198071900 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4543276239313103539, guid: bf4c732a846d0c24ab5554dffde89216, type: 3}
+  m_PrefabInstance: {fileID: 3432803710198071898}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3432803710198071901 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5580641423835539111, guid: bf4c732a846d0c24ab5554dffde89216, type: 3}
+  m_PrefabInstance: {fileID: 3432803710198071898}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6119028223335272422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -989,9 +1016,9 @@ SceneRoots:
   - {fileID: 787478479}
   - {fileID: 410087041}
   - {fileID: 832575519}
-  - {fileID: 3432803710198071898}
   - {fileID: 1343262022}
   - {fileID: 6119028223335272422}
   - {fileID: 1876753486}
   - {fileID: 524859218532459544}
   - {fileID: 1520082497437186248}
+  - {fileID: 3432803710198071898}
