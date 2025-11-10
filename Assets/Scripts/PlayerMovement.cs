@@ -46,7 +46,8 @@ public class PlayerMovement : MonoBehaviour
             rb.AddRelativeForce(thrustForce * Time.fixedDeltaTime * Vector3.up);
             if (!auSrc.isPlaying) { auSrc.PlayOneShot(thrustSFX, 1.0F); }
             if (!mainBoosterParticles.isPlaying) { mainBoosterParticles.Play(); }
-        } else
+        }
+        else
         {
             mainBoosterParticles.Stop();
             auSrc.Stop();
