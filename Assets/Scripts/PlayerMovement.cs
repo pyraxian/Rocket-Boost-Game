@@ -60,12 +60,20 @@ public class PlayerMovement : MonoBehaviour
 
         if (rotationInput < 0) // Rotate clockwise
         {
-            if (!rightBoosterParticles.isPlaying) { rightBoosterParticles.Play(); }
+            if (!rightBoosterParticles.isPlaying)
+            {
+                leftBoosterParticles.Stop();
+                rightBoosterParticles.Play(); 
+            }
             ApplyRotation(rotationSpeed);
         }
         else if (rotationInput > 0) // Rotate counter-clockwise
         {
-            if (!leftBoosterParticles.isPlaying) { leftBoosterParticles.Play(); }
+            if (!leftBoosterParticles.isPlaying)
+            {
+                rightBoosterParticles.Stop();
+                leftBoosterParticles.Play(); 
+            }
             ApplyRotation(-rotationSpeed);
         } 
         else
