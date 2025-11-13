@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
@@ -15,15 +16,22 @@ public class CollisionHandler : MonoBehaviour
 
     AudioSource auSrc;
     private bool isControllable = true; // Prevent the player from moving the rocket after crashing or finishing level
+    private bool isCollidable = true; 
 
     void Start()
     {
         auSrc = GetComponent<AudioSource>();
     }
 
+    void Update()
+    {
+        RespondToDebugKeys();
+    }
+
     void OnCollisionEnter(Collision collision)
     {
-        if (!isControllable) { return; }
+        if (!isControllable || !isCollidable) { return; }
+
         switch (collision.gameObject.tag)
         {
             case "Friendly":
@@ -80,5 +88,24 @@ public class CollisionHandler : MonoBehaviour
     void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void RespondToDebugKeys()
+    {
+        if (Keyboard.current.lKey.wasPressedThisFrame) // Load next level
+        {
+            LoadNextLevel();
+        }
+        else if (Keyboard.current.cKey.wasPressedThisFrame) // Toggle collision
+        {
+            isCollidable = !isCollidable;
+            if (isCollidable)
+            {
+                Debug.Log("Collision on");
+            } else
+            {
+                Debug.Log("Collision off");
+            }
+        }
     }
 }
