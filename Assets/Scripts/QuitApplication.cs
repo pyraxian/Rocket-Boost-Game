@@ -15,8 +15,8 @@ public class QuitApplication : MonoBehaviour
     {
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            // Quit application
             Debug.Log("Tried to quit application");
+            Application.Quit();
         }
     }
 }
