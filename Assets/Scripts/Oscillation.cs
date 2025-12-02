@@ -2,21 +2,23 @@ using UnityEngine;
 
 public class Oscillation : MonoBehaviour
 {
+    [SerializeField] private float speed;
+    [SerializeField] private Vector3 movementVector;
     private Vector3 startPosition;
     private Vector3 endPosition;
-    private Vector3 movementVector;
-    private float speed;
     private float movementFactor;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        startPosition = transform.position;
+        endPosition = startPosition + movementVector;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        movementFactor = Mathf.PingPong(Time.time * speed, 1);
+        transform.position = Vector3.Lerp(startPosition, endPosition, movementFactor);
     }
 }
