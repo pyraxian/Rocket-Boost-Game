@@ -42,15 +42,7 @@ public class CollisionHandler : MonoBehaviour
                 break;
             case "Finish":
                 Debug.Log("You reached the end of the level");
-                if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings - 1)
-                {
-                    SuccessSequence();
-                }
-                else
-                {
-                    Debug.Log("You've reached the end of the game.");
-                    auSrc.PlayOneShot(successSFX, 1.0F);
-                }
+                SuccessSequence();
                 break;
             default:
                 CrashSequence();
@@ -60,13 +52,19 @@ public class CollisionHandler : MonoBehaviour
 
     private void SuccessSequence()
     {
-        // todo: add particles
         isControllable = false;
         auSrc.Stop();
         auSrc.PlayOneShot(successSFX, 1.0F);
         successParticles.Play();
         GetComponent<PlayerMovement>().enabled = false;
-        Invoke(nameof(LoadNextLevel), delayTimer);
+        if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings - 1)
+        {
+            Invoke(nameof(LoadNextLevel), delayTimer);
+        }
+        else
+        {
+            Debug.Log("You've reached the end of the game! Congratulations!");
+        }
     }
 
     private void CrashSequence()
